@@ -1,0 +1,70 @@
+<table id="catalogue" class="<%= table_class %>">
+	<thead>
+		<tr>
+			<th>Code</th>
+			<th>Size</th>
+			<th>Organic?</th>
+			<th class="concatprod">Product</th>
+			<th>RRP</th>
+			<th>Price</th>
+			<th>Quantity</th>
+		</tr>
+	</thead>
+	<tbody>
+<% products.each do |product| %>
+		<tr id="product-<%= product[:code] %>">
+			<td>
+				<%= product[:code] %>
+			</td>
+			<td>
+				<%= product[:concatsize] %>
+			</td>
+			<td class="organic">
+				<%= product[:organic] ? 'x' : '' %>
+			</td>
+			<td class="concatprod">
+				<%= product[:concatprod] %>
+			</td>
+			<td class="rrp">
+				&pound;<%= number_with_precision(product[:rrp], :precision => 2) %>
+			</td>
+			<td class="price">
+				&pound;<%= number_with_precision(product[:price], :precision => 2) %>
+			</td>
+			<td class="quantity">
+				<a href="#" onclick="change_quantity('<%= product[:code] %>', -1);return(false);">-</a>
+				<input type="text" value="<%= product[:quantity].to_i %>" />
+				<a href="#" onclick="change_quantity('<%= product[:code] %>', 1);return(false);">+</a>
+			</td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+	function change_quantity(code, increment){
+		var value = parseInt($j('#product-'+code+' input').val());
+		if(value + increment >= 0 ){
+			$j.post(
+				'/update_basket',
+				{ product_code:code, increment:increment },
+				update_page,
+				'json'
+			)
+		}
+	}
+	function update_page(data){
+		var el = $j('#product-'+data['product_code']+' input');
+		var old_value = parseInt(el.val());
+		var new_value = old_value + parseInt(data['increment']);
+		el.val(new_value);
+		$j('#basket-count').html(data['basket_count']);
+		$j('#basket-total').html(data['basket_total']);
+		// remove if in basket
+		if(new_value == 0){ 
+			$j('#catalogue.basket #product-'+data['product_code']).fadeOut('slow', function() {
+				$j('#product-'+data['product_code']).remove();
+			});
+		}
+	}
+</script>

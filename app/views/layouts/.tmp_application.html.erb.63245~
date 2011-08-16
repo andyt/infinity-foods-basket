@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Catalogue | Infinity Foods</title>
+<link href="http://www.infinityfoodswholesale.co.uk/css/core.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="http://www.infinityfoodswholesale.co.uk/css/print.css" rel="stylesheet" type="text/css" media="print" />
+<script type="text/javascript" src="http://www.infinityfoodswholesale.co.uk/js/swfobject.js"></script>
+<script type="text/javascript">
+	//<![CDATA[
+
+	var wipe_list = new Array;
+
+    function $(oi)
+    {
+    	return (document.getElementById(oi));
+    }
+
+    function wiper()
+    {
+    	var speed = null;
+    	var offset = null;
+    	var max = null;
+    	var wiper_obj = null;
+    	var interval_id = null;
+    	var num = 0;
+    	var interval = 40;
+
+    	this.setup = function(o)
+    	{
+    		if (!o) return false;
+    		wiper_obj = $(o);
+    		num = o;
+    	}
+
+    	function do_wipe()
+    	{
+    		x = wiper_obj.clientWidth;
+
+    		if (x+speed <= (max+offset) && x+speed >= offset)
+    		{
+    			wiper_obj.style.width = (x+speed)+"px";
+    		}
+    		else
+    		{
+    			if (x+speed > (max+offset))
+    			{
+    				wiper_obj.style.width = (max+offset)+"px";
+    				clearInterval(interval_id);
+    				interval_id = 0;
+    			}
+    			else if (x+speed <= offset)
+    			{
+    				wiper_obj.style.width = offset+"px";
+    				clearInterval(interval_id);
+    				interval_id = 0;
+    			}
+    			else
+    			{
+    				clearInterval(interval_id);
+    				interval_id = 0;
+    			}
+    		}
+    	}
+
+    	this.initiate = function(s,m,o)
+    	{
+    		speed = s;
+    		offset = o;
+    		max = m;
+    		if (!interval_id)
+    		{
+    			interval_id = setInterval(do_wipe,interval);
+    		}
+    	}
+    }
+
+    function wipe(obj_num,speed,max,offset)
+    {
+    	if (!offset) offset = 0;
+    	if (!max) max = 0;
+		if (wipe_list[obj_num])
+		{
+			wipe_list[obj_num].initiate(speed,max,offset);
+		}
+		else
+		{
+			wipe_list[obj_num] = new wiper;
+			wipe_list[obj_num].setup(obj_num);
+			wipe_list[obj_num].initiate(speed,max,offset);
+		}
+    }
+	//]]>
+</script>
+</head>
+<body >
+	<div id="wrap">
+	<div id="left_grad"><div id="right_grad">
+		<div id="wrap_gutter">
+			<div id="header">
+<a href="http://www.infinityfoodswholesale.co.uk/"><h1 id="logo">Infinity Foods Co-operative Ltd</h1></a>
+<div id="top_search">
+	<h2>Find Your Local Supplier Here</h2>
+	<form id="supplier_search" method="post" action="http://www.infinityfoodswholesale.co.uk/where_to_buy/">
+		<table width="100%">
+			<tr>
+				<td class="searchlabel">Enter your postcode here:</td>
+				<td class="searchinput"><input class="searchbox" type="text" name="postcode" value=""/></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div style="clear:both;"></div>			</div>
+			<div class="sidebar">
+<ul class="nav">
+	<li>
+		<a href="http://www.infinityfoodswholesale.co.uk/">Home</a>
+	</li>
+	<li>
+		<a href="http://www.infinityfoodswholesale.co.uk/products/">Products</a>
+	</li>
+	<li>
+		<a href="http://www.infinityfoodswholesale.co.uk/about/">About</a>
+	</li>
+	<li>
+		<a href="http://www.infinityfoodswholesale.co.uk/where_to_buy/">Where to buy</a>
+	</li>
+	<li>
+		<a href="http://www.infinityfoodswholesale.co.uk/organic/">Organic</a>
+	</li>
+	<li>
+		<a href="http://www.infinityfoodswholesale.co.uk/fairtrade/">Fairtrade</a>
+	</li>
+	<li>
+		<a href="http://www.infinityfoodswholesale.co.uk/delivery/">Delivery</a>
+	</li>
+	<li>
+		<a href="http://www.infinityfoodswholesale.co.uk/news/">News</a>
+	</li>
+	<li>
+		<a href="http://www.infinityfoodswholesale.co.uk/jobs/">Jobs</a>
+	</li>
+	<li>
+		<a class="act" href="index.html">Catalogue</a>
+	</li>
+	<li>
+		<a href="http://www.infinityfoodswholesale.co.uk/contact/">Contact</a>
+	</li>
+</ul><!-- added newsletter signup from retail site TW 26/02/2010 2198 -->
+<div class="ctab">
+        <h3>Newsletter</h3>
+        <div class="ctab_img">
+        </div>
+        <h4>Sign up to receive our forthcoming newsletter</h4>
+        <form action="http://www.infinityfoodswholesale.co.uk/" method="post">
+                <input type="hidden" name="do" value="newsletter"/>
+                First Name:<br/>
+                <input name="first_name" value="" type="text"/><br/>
+                Surname:<br/>
+                <input name="surname" value="" type="text"/><br/>
+                Email Address:<br/>
+                <input name="email" value="" type="text"/><br/>
+                <input class="submit" type="submit" value="SEND"/>
+        </form>
+
+</div>
+
+			</div>
+			<div id="content">
+				<div id="content_gutter">
+
+					<%= yield %>
+					
+				</div>
+			</div>
+			<div class="sidebar">
+<h2 class="sidebar_head">Featured Product</h2>
+<div class="news"><a href="http://www.infinityfoodswholesale.co.uk/products/branded_food/pimhill_organics/"><img class="news_img" src="http://www.infinityfoodswholesale.co.uk/images/products/sidebar/1267720585.png" alt="Pimhill Organics"/></a><div class="news_body">
+		<div class="news_head">
+			<a href="http://www.infinityfoodswholesale.co.uk/products/branded_food/pimhill_organics/"><h3>Pimhill Organics</h3></a>
+		</div>
+		<div class="news_body_gutter">
+			<p>New range of Organic Oats, Muesli and Oatcakes from Organic pioneer Pimhill Farm.</p>
+			<a class="news_link" href="http://www.infinityfoodswholesale.co.uk/products/branded_food/pimhill_organics/">Read More</a>
+		</div>
+	</div>
+</div>
+<div class="news"><a href="http://www.infinityfoodswholesale.co.uk/news/2011/july/40_years_of_good_stuff/"><img class="news_img" src="http://www.infinityfoodswholesale.co.uk/images/news/sidebar/1310112110.jpg" alt="" border="0"/></a><div class="news_body">
+		<div class="news_head">
+			<a href="http://www.infinityfoodswholesale.co.uk/news/"><h3>News</h3></a>
+		</div>
+		<div class="news_body_gutter">
+			<p><a href="http://www.infinityfoodswholesale.co.uk/news/2011/july/40_years_of_good_stuff/"><b style="color:#FFFFFF">40 Years of Good Stuff</b></a></p>
+			<p>Many thanks to those who came along and help celebrate our 40th anniversary </p>
+			<a class="news_link" href="http://www.infinityfoodswholesale.co.uk/news/2011/july/40_years_of_good_stuff/">Read More</a>
+		</div>
+	</div>
+</div>
+			</div>
+			<div style="clear:both;"></div>
+			<div id="footer">
+<div class="foot_left">
+	&copy; Infinity Foods 2010
+	&nbsp;|&nbsp;
+	<a href="http://www.infinityfoodswholesale.co.uk/terms_and_contidtions/">Terms and Conditions</a>
+	&nbsp;|&nbsp;
+	<a href="http://www.infinityfoodswholesale.co.uk/contact/">Contact</a>
+	&nbsp;|&nbsp;
+	<!-- changed footer links TW 26/02/2010 2197 -->
+	<!--<a href="/retail/">Retail</a>-->
+	<!--&nbsp;|&nbsp;-->
+	<!--<a href="/cafe/">Cafe</a>-->
+	<a href="http://infinityfoodsretail.co.uk/" target="_blank">Retail</a>
+	&nbsp;|&nbsp;
+	<a href="http://www.infinityfoodscafe.co.uk/" target="_blank">Cafe</a>
+	&nbsp;|&nbsp;
+</div>
+<div class="foot_right">
+	<a href="http://www.theycreate.co.uk/" target="_blank">Site.They.Create</a>
+</div>
+<div style="clear:both;"></div>			</div>
+		</div>
+	</div></div>
+	</div>
+	
+	<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-12713779-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+
+</body>
+</html>

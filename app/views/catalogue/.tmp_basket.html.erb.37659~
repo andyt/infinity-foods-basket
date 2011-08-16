@@ -1,0 +1,3 @@
+<% @products.each do |product| %>
+	<p><%= product[:concatprod] %>, <%= product[:concatsize] %></p>
+<% end %>

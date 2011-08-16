@@ -1,0 +1,95 @@
+#catalogue {
+	margin:1em 0 2em 0;
+	font-family:sans-serif;
+	font-size:85%;
+	width:100%;
+}
+#catalogue th {
+	text-align:left;
+}
+#catalogue th, #catalogue td {
+	padding: 2px 4px;
+	border: 1px solid #ccc;
+	background: #fff;
+	white-space:nowrap;
+}
+#catalogue td.organic {
+	text-align: center;
+}
+#catalogue .concatprod {
+	width:100%;
+	white-space:normal;
+}
+#catalogue td.rrp, table td.price {
+	padding: 2px 6px 2px 1em;
+	text-align: right;
+}
+#catalogue-search input.q {
+	padding:3px;
+	border:1px solid #ccc;
+}
+#catalogue-search input.submit {
+	padding:2px;
+	border:1px solid #ccc;
+}
+#content {
+	width:800px;
+	margin-right:0;
+}
+#catalogue td.quantity a {
+	font-family:monospace;
+	padding:0.5em;
+	background: #e7e7e7;
+}
+#catalogue input {
+	padding:4px 2px;
+	width:3em;
+	text-align:center;
+}
+#catalogue.basket #basket-total {
+	font-weight: bold;
+	text-align: right;
+}
+
+#empty-basket {
+	float:right;
+}
+
+#empty-basket {
+	padding:3px;
+	border:1px solid #ccc;
+	margin:0 0 0 1em;
+}
+
+.flash {
+	border:3px solid red;
+	padding:8px;
+	background:#fff;
+	text-align:center;
+	margin:0 0 1em 0;
+	font-weight:bold;
+}
+
+#basket-info {
+	float:right;
+	line-height:1.5em;
+}
+
+#checkout input {
+	padding:3px;
+	border:1px solid #ccc;
+}
+
+#main h2 {
+	font-size:125%;
+	margin:2em 0 0.25em 0;
+	padding:0 0 0.1em 0;
+	border-bottom:1px solid #ccc;
+}
+
+#main p {
+	font-family: Georgia, serif;
+	font-size:1em;
+	line-height:1.25em;
+	color:black;
+}

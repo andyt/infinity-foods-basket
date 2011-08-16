@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	</head>
+	<body>
+		
+		<%= image_tag attachments['logo.gif'].url, :width => 142, :height => 99 -%>
+		
+	    <h1>Thanks for your Infinity Foods order!</h1>
+		
+		<p>
+		Please call 01273 424060 to complete your order.
+		Our sales team will give you an email address to forward this to. 
+		</p>
+	    
+		<p>
+		Your basket contains 
+		<%= pluralize(@basket[:count], 'item') -%> and the total is 
+		&pound;<%= number_with_precision(@basket[:total], :precision => 2) %>.
+		</p>
+
+		<table cellpadding="4" cellspacing="1" border="0">
+			<thead>
+				<tr>
+					<th>Code</th>
+					<th>Size</th>
+					<th>Organic?</th>
+					<th>Product</th>
+					<th>RRP</th>
+					<th>Price</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% @basket[:products].each do |product| %>
+				<tr id="product_<%= product[:code] %>">
+					<td>
+						<%= product[:code] %>
+					</td>
+					<td>
+						<%= product[:concatsize] %>
+					</td>
+					<td>
+						<%= product[:organic] ? 'x' : '' %>
+					</td>
+					<td>
+						<%= product[:concatprod] %>
+					</td>
+					<td>
+						&pound;<%= number_with_precision(product[:rrp], :precision => 2) %>
+					</td>
+					<td>
+						&pound;<%= number_with_precision(product[:price], :precision => 2) %>
+					</td>
+					<td>
+						<%= product[:quantity].to_i %>
+					</td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+	</body>
+</html>

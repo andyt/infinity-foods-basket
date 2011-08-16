@@ -1,0 +1,38 @@
+<%= button_to 'Empty basket', "/?q="+h(session[:q]), :confirm => 'Are you sure you want to empty your basket?', :id => 'empty-basket' %>
+
+<div id="basket-info">
+	Your basket contains <span id="basket-count"><%= pluralize(@basket_count, 'item') %></span>.
+</div>
+
+<form action="/" id="catalogue-search" style="display:inline;">
+	Back to search: 
+	<input type="text" class="q" name="q" style="width:10em" value="<%= h(@query) %>" />
+	<input type="submit" class="submit" value="Search" />
+</form>
+
+<% if @basket %>
+	<%= render 'product_table', { :table_class => 'basket', :products => @basket } %>
+<% end %>
+
+<p>
+Your basket total is 
+&pound;<span id="basket-total"><%= number_with_precision(@basket_total, :precision => 2) %></span>.
+</p>
+
+
+<h2>Checkout</h2>
+
+<p>
+Enter your email address below. We'll send you an email containing your order for checking, along with further instructions.
+</p>
+
+<p>
+<strong>This process does not store your email address.</strong>
+</p>
+
+<form id="checkout" action="/send_order" method="post">
+	<label for="email">Your email address:</label>
+	<input id="email" type="text" name="email" />
+	<input type="submit" value="Send order" />
+	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+</form>

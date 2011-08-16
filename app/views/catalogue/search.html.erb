@@ -1,0 +1,16 @@
+<div id="basket-info">
+	Your basket contains <a href="/basket" id="basket-count"><%= pluralize(@basket_count, 'item') -%></a>, 
+	total &pound;<span id="basket-total"><%= number_with_precision(@basket_total, :precision => 2) %></span>.
+</div>
+
+<form id="catalogue-search">
+	Find items containing: 
+	<input type="text" class="q" name="q" style="width:10em" value="<%= h(@query) %>" />
+	<input type="submit" class="submit" value="Search" />
+</form>
+
+<% if @products %>
+	<%= render 'product_table', { :table_class => 'search', :products => @products } %>
+<% elsif params[:q] %>
+	<p>No products found.</p>
+<% end %>

@@ -1,0 +1,110 @@
+<style type="text/css">
+	table#catalogue {
+		margin-top:20px;
+		font-family:sans-serif;
+		font-size:90%;
+	}
+	table#catalogue th {
+		text-align:left;
+	}
+	table#catalogue th, table td {
+		padding: 2px 4px;
+		border: 1px solid #ccc;
+		background: #fff;
+	}
+	table#catalogue td.organic {
+		text-align: center;
+	}
+	table#catalogue td.rrp, table td.price {
+		padding: 2px 6px 2px 1em;
+		text-align: right;
+	}
+	#catalogue-search input.q {
+		padding:3px;
+		border:1px solid #ccc;
+	}
+	#catalogue-search input.submit {
+		padding:2px;
+		border:1px solid #ccc;
+	}
+	#content  {
+		width:800px;
+		margin-right:0;
+	}
+	#catalogue td.quantity a {
+		font-family:monospace;
+		padding:0.5em;
+		background: #e7e7e7;
+	}
+	#catalogue input {
+		padding:4px 2px;
+		width:3em;
+		text-align:center;
+	}
+</style>
+
+<form id="catalogue-search">
+	Find items containing: 
+	<input type="text" class="q" name="q" style="width:10em" value="<%= h(params[:q]) %>" />
+	<input type="submit" class="submit" value="Search" />
+</form>
+
+<% if @products %>
+	<table id="catalogue">
+		<thead>
+			<tr>
+				<th>Code</th>
+				<th>Size</th>
+				<th>Organic?</th>
+				<th>Product</th>
+				<th>RRP</th>
+				<th>Price</th>
+				<th>Quantity</th>
+			</tr>
+		</thead>
+		<tbody>
+	<% @products.each do |product| %>
+			<tr>
+				<td>
+					<%= product[:code] %>
+				</td>
+				<td>
+					<%= product[:concatsize] %>
+				</td>
+				<td class="organic">
+					<%= product[:organic] ? 'x' : '' %>
+				</td>
+				<td>
+					<%= product[:concatprod] %>
+				</td>
+				<td class="rrp">
+					&pound;<%= product[:rrp] %>
+				</td>
+				<td class="price">
+					&pound;<%= product[:price] %>
+				</td>
+				<td class="quantity">
+					<a href="#" onclick="decrement_basket('<%= product[:code] %>')">-</a>
+					<input type="text" id="product_<%= product[:code] %>" value="<%= product[:basket_item] ? product[:basket_item][:quantity] : 0 %>" />
+					<a href="#" onclick="increment_basket('<%= product[:code] %>')">+</a>
+				</td>
+			</tr>
+	<% end %>
+		</tbody>
+	</table>
+<% elsif params[:q] %>
+	<p>No products found.</p>
+<% end %>
+
+<script type="text/javascript">
+	function decrement_basket(code){
+		alert(code + " " + quantity(code));
+	}
+	function quantity(code){
+		$("#product_"+code).val();
+	}
+	function increment_basket(code){
+		alert(code + " " + quantity(code));
+	}
+	
+</script>

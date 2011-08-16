@@ -1,0 +1,5 @@
+<h2 class="main_head">Our Catalogue: Online search</h2>
+
+<% @products.each do |product| %>
+	<p><%= product[:concatprod] %>, <%= product[:concatsize] %></p>
+<% end %>
