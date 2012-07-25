@@ -11,3 +11,5 @@ More involved e-commerce integration could be added in due course.
 Jquery is used to give immediate feedback on basket value and number of items.
 
 You can see it in action at http://infinity.raild.co.uk/.
+
+The app remembers your order with a long-expiry cookie so you can come back to it repeatedly.
