@@ -1,10 +1,12 @@
 == A simple shopping basket for Infinity Foods Wholesale, Brighton
 
-I built this to try out some new dev techniques and also to make ordering easier from a local organic (mostly) food wholesaler.
+I built this to try out some new dev techniques and also to solve a problem involving significant friction when ordering from a local organic (mostly) food wholesaler, due to the size of their catalogue and the similarity of many of the products.
 
-The app takes Infinity Foods existing (and very extensive) catalogue of products and presents a simple shopping basket for building an order. There's no e-commerce integration - the customer is simply asked for their email address, and the order is forwarded to them, with instructions on how to complete the order (by contacting the sales team, and forwarding the nicely formatted shopping list to them).
+The app takes the Infinity Foods existing spreadsheet of products and presents a simple shopping basket for building an order. There's no e-commerce integration - the customer is simply asked for their email address, and the order is forwarded to them, with instructions on how to complete the order. This is done by contacting the sales team, and forwarding the nicely formatted shopping list to them.
 
 The idea is that this process can be very easily fitted into existing ones - and hopefully reduce what must be considerable friction due to the sheer number of available products (and confusion due to similar products).
+
+More involved e-commerce integration could be added in due course.
 
 Jquery is used to give immediate feedback on basket value and number of items.
 
